@@ -48,7 +48,7 @@ void ofApp::setup(){
 	auto devices = soundStream.getMatchingDevices("default");
 	
 	if(!devices.empty()){
-		settings.setInDevice(devices[0]);
+		settings.setInDevice(devices[4]);
 	}
 	settings.setApi(ofSoundDevice::Api::MS_DS);// = ofSoundDevice::Api::MS_DS;
 	settings.setInListener(this);
@@ -391,11 +391,13 @@ ofPopStyle();
 
 ////////////////////////////////////////////////////////////////////////////////
 
-	drawCounter++;
+	/*drawCounter++;
 	
 	ofSetColor(225);
 	string reportString = "buffers received: "+ofToString(bufferCounter)+"\ndraw routines called: "+ofToString(drawCounter)+"\nticks: " + ofToString(soundStream.getTickCount());
-	ofDrawBitmapString(reportString, 86, 910);
+	ofDrawBitmapString(reportString, 86, 910);*/
+
+	
 		
 }
 
@@ -426,7 +428,7 @@ void ofApp::audioIn(ofSoundBuffer & input){
 	smoothedVol *= 0.93;
 	smoothedVol += 0.2* curVol;
 	
-	bufferCounter++;
+	//bufferCounter++;
 	
 	
 }
