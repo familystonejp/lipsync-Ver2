@@ -1,9 +1,12 @@
-#BRIDGE　lipsync-Ver2
-2021-2-8
-video frameをallocateしました。
-framwsyncをonにしました。
+# BRIDGE　
+lipsync-Ver2
 
-2021-1-21
+
+# 2021-2-8
+video frameをallocateしました。
+framesyncをonにしました。
+
+# 2021-1-21
 フォルダの中の
 lip sync GM.exe
 アプリを開いていただいたらコマンドプロンプトとアプリが立ち上がります。
