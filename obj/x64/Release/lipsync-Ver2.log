@@ -1,0 +1,9 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: 中間ディレクトリ (obj\x64\Release\) に別のプロジェクト (lip sync GM Ver_2_3.vcxproj) と共有されているファイルが含まれています。これにより、クリーンしてリビルド動作が適切に行われない可能性があります。
+  lipsync-Ver2.vcxproj -> D:\of_v0.11.0_vs2017_release\apps\myApps\lipsync-Ver2\bin\lipsync-Ver2.exe
+  
+  	                   2	D:\of_v0.11.0_vs2017_release\libs\fmodex\lib\vs\x64\
+  	  *EXTRA File 		 6942208	D:\of_v0.11.0_vs2017_release\apps\myApps\lipsync-Ver2\bin\FreeImage.dll
+  
+  	                   1	D:\of_v0.11.0_vs2017_release\libs\FreeImage\lib\vs\x64\
+  	  *EXTRA File 		 1503232	D:\of_v0.11.0_vs2017_release\apps\myApps\lipsync-Ver2\bin\fmodex64.dll
+  	  *EXTRA File 		 1552384	D:\of_v0.11.0_vs2017_release\apps\myApps\lipsync-Ver2\bin\fmodexL64.dll
