@@ -1,6 +1,8 @@
 # BRIDGE　
 lipsync-Ver2
 
+# 2021-02-11
+chartを新しくしました。
 
 # 2021-2-8
 video frameをallocateしました。
