@@ -10,7 +10,7 @@ void ofApp::setup(){
 	ofSetFrameRate(60);
 	ofSetWindowTitle("BRIDGE");
 	//soundStream.printDeviceList();
-	int bufferSize = 256;
+	int bufferSize = 4096;
 
 	left.assign(bufferSize, 0.0);
 	right.assign(bufferSize, 0.0);
@@ -172,8 +172,7 @@ void ofApp::update() {
 void ofApp::draw() {
 
 	ofSetColor(255);
-	ofDrawBitmapString("LIP SYNC CHECKER", 82, 90
-	);
+	ofDrawBitmapString("LIP SYNC CHECKER", 82, 90);
 	ofDrawBitmapString("BRIDGE", 82, 110);
 	ofDrawBitmapString("Check the video ID at the command prompt and press the keyboard input number.", 82, 980);
 	ofDrawBitmapString("If you make a mistake in the number, please restart it (it will be resolved in a future update).", 82,1000);
@@ -197,12 +196,8 @@ void ofApp::draw() {
 
 	ofDrawBitmapString("video Channel", 4, 18);
 
-
-	ofSetLineWidth(1);
-	ofDrawRectangle(0, 0, 512, 200);
-
 	ofSetColor(10, 245, 35);
-	ofSetLineWidth(3);
+	ofSetLineWidth(1);
 
 	ofBeginShape();
 	for (unsigned int i = 0; i < videoHistory.size(); i++) {
@@ -210,9 +205,13 @@ void ofApp::draw() {
 
 		ofVertex(i, 200 - videoHistory[i] * 180.0f);
 
-		if (i == videoHistory.size() - 1) ofVertex(i, 200);
+		if (i == videoHistory.size()) ofVertex(i, 200);
 	}
 	ofEndShape(false);
+
+	ofSetColor(255);
+	ofSetLineWidth(1);
+	ofDrawRectangle(0, 0, 512, 200);
 
 	ofPopMatrix();
 	ofPopStyle();
@@ -235,19 +234,20 @@ ofPushStyle();
 
 	ofDrawBitmapString("sound Channel", 4, 18);
 
-	ofSetLineWidth(1);
-	ofDrawRectangle(0, 0, 512, 200);
-
 	ofSetColor(255, 68, 145);
-	ofSetLineWidth(3);
+	ofSetLineWidth(1);
 
 	ofBeginShape();
 	for (unsigned int i = 0; i < volHistory.size(); i++) {
 		if (i == 0) ofVertex(i, 200);
 		ofVertex(i, 200 - volHistory[i] * 200);
-		if (i == volHistory.size() - 1) ofVertex(i, 200);
+		if (i == volHistory.size()) ofVertex(i, 200);
 	}
 	ofEndShape(false);
+
+	ofSetColor(255);
+	ofSetLineWidth(1);
+	ofDrawRectangle(0, 0, 512, 200);
 
  ofPopMatrix();
 ofPopStyle();
@@ -264,7 +264,7 @@ ofPushStyle();
 	ofPopStyle();
 
 	ofSetColor(255);
-	ofDrawBitmapString("Sound  vol (0-100): " + ofToString(scaledVol * 100, 0), 4, 118);
+	ofDrawBitmapString("Sound  vol (0-100): " + ofToString(scaledVol * 100, 0), 4, 18);
 	ofDrawBitmapString("x4", 490, 118);
 	ofDrawLine(0, 100, 512, 100);
 	ofSetColor(255, 68, 145);
@@ -277,7 +277,7 @@ ofPushStyle();
 
 		ofVertex(i*4 , 400 - allvolHistory[i] * 12.0f);
 
-		if (i == allvolHistory.size() -1) ofVertex(i*4 , 400);
+		if (i == allvolHistory.size()) ofVertex(i*4 , 400);
 	}
 	ofEndShape(false);
 
@@ -291,19 +291,19 @@ ofPushStyle();
 
 		ofVertex(i*4 , 400 - allvideoHistory[i] * 12.0f);
 
-		if (i == allvideoHistory.size() - 1) ofVertex(i*4 , 400);
+		if (i == allvideoHistory.size()) ofVertex(i*4 , 400);
 	}
 	ofEndShape(false);
 	ofPopStyle();
 
 	ofPushStyle();
 	ofSetColor(54, 200, 255);
-	ofSetLineWidth(5);
+	ofSetLineWidth(2);
 
 	//lets draw the right vol as a graph
 	ofBeginShape();
 	for (unsigned int i = 0; i < right.size(); i++) {
-		ofVertex(i * 2, 50 - right[i] * 180.0f);
+		ofVertex(i * 0.125, 50 - right[i] * 45.0f);//i*n‚ª–_ƒOƒ‰ƒt‚Ì’·‚³Bbuffer‚ð‘‚â‚µ‚½‚Æ‚«‚Ín‚Å’²®(512=1)
 	}
 	ofEndShape(false);
 	ofPopStyle();
@@ -319,7 +319,7 @@ ofPopStyle();
 // draw the video in:
 ofPushStyle();
 ofPushMatrix();
-ofTranslate(1126, 120, 0);
+ofTranslate(1130, 120, 0);
 
 ofPushStyle();
 ofNoFill();
@@ -331,7 +331,7 @@ video.draw(0, 0, 712, 400.5);
 ofDrawBitmapString("video in ", 4, 18);
 ofSetColor(255, 10, 35);
 ofFill();
-ofDrawCircle(680, 30, scaledVol * 20.0f);
+//ofDrawCircle(680, 30, scaledVol * 200.0f);
 
 ofPopMatrix();
 ofPopStyle();
@@ -351,7 +351,7 @@ ofPopStyle();
 
 ofSetColor(255);
 //ofDrawBitmapString("Sound  vol (0-100): " + ofToString(scaledVol * 100, 0), 4, 118);
-ofDrawBitmapString("x16", 1727, 20);
+ofDrawBitmapString("x16", 1728, 20);
 //ofDrawLine(0, 100, 512, 100);
 ofSetColor(255, 68, 145);
 
@@ -363,7 +363,7 @@ for (unsigned int i = 0; i < x10volHistory.size(); i++) {
 
 	ofVertex(i * 16, 400 - x10volHistory[i] * 18.0f);
 
-	if (i == x10volHistory.size() - 1) ofVertex(i * 16, 400);
+	if (i == x10volHistory.size()) ofVertex(i * 16, 400);
 }
 ofEndShape(false);
 
@@ -377,13 +377,13 @@ for (unsigned int i = 0; i < x10videoHistory.size(); i++) {
 
 	ofVertex(i * 16, 400 - x10videoHistory[i] * 18.0f);
 
-	if (i == x10videoHistory.size() - 1) ofVertex(i * 16, 400);
+	if (i == x10videoHistory.size()) ofVertex(i * 16, 400);
 }
 ofEndShape(false);
 ofPopStyle();
 
 ofSetColor(225);
-ofDrawRectangle(0, 0, 1757, 400);
+ofDrawRectangle(0, 0, 1760, 400);
 
 ofPopMatrix();
 ofPopStyle();
@@ -391,11 +391,11 @@ ofPopStyle();
 
 ////////////////////////////////////////////////////////////////////////////////
 
-	/*drawCounter++;
+	drawCounter++;
 	
 	ofSetColor(225);
 	string reportString = "buffers received: "+ofToString(bufferCounter)+"\ndraw routines called: "+ofToString(drawCounter)+"\nticks: " + ofToString(soundStream.getTickCount());
-	ofDrawBitmapString(reportString, 86, 910);*/
+	ofDrawBitmapString(reportString, 86, 910);
 
 	
 		
